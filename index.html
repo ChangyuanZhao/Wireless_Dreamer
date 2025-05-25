@@ -183,13 +183,12 @@ Dong In Kim</span>
           <div class="columns is-centered">
             <div class="column is-14">
               <img src="static/images/zhaocy/image3.png" alt="Dataset format visualization" class="image">
-              <p class="caption has-text-centered is-size-6 mt-2">The workflow of the proposed framework. The left part is the model structure of Wireless Dreamer, including a world model, Q-network, and target Q-network. The bottom part presents the continuous processes of Wireless Dreamer. The right part illustrates the weather-aware tracking planning in a UAV-assisted scenario in LAWNs.</p>
+              <p class="caption has-text-centered is-size-6 mt-2">Figure 1: The workflow of the proposed framework. The left part is the model structure of Wireless Dreamer, including a world model, Q-network, and target Q-network. The bottom part presents the continuous processes of Wireless Dreamer. The right part illustrates the weather-aware tracking planning in a UAV-assisted scenario in LAWNs.</p>
             </div>
           </div>
 
-          <h3 class="title is-4">DPO for Hallucination Mitigation</h3>
-          <p>We introduce a specialized Telecom hallucination dataset and demonstrate significant improvements through direct preference optimization (DPO), achieving a 20.6% increase in correct response rates. </p>
-
+          <h3 class="title is-4">Experimental Setup</h3>
+          <p>Our experiment is based on Python along with the PyTorch package, conducted on a Linux server equipped with an Ubuntu 22.04 operating system and powered by an Intel(R) Xeon(R) Silver 4410Y 12-core processor and an NVIDIA RTX A6000 GPU. We benchmark the proposed method with DQN and random policy.
           <div class="columns is-centered">
             <div class="column is-14">
               <img src="static/images/YQ_add3.jpg" alt="DPO" class="image">
@@ -197,24 +196,24 @@ Dong In Kim</span>
             </div>
           </div>
           
-          <h3 class="title is-4">Mixture-of-Experts (MoE) for Hallucination Mitigation</h3>
+          <h3 class="title is-4">Weather-aware UAV trajectory planning</h3>
           <p>Apart from DPO, we use MoE for hallucination mitigation, especially considering other networking factors such as resource costs, service latency, etc.</p>
           
           <h3 class="title is-4">Results</h3>
           <div class="columns is-centered">
             <div class="column is-10">
               <img src="static/images/zhaocy/image4.png" alt="Experimental results visualization" class="image">
-              <p class="caption has-text-centered is-size-6 mt-2">Comparison of average episodic rewards</p>
+              <p class="caption has-text-centered is-size-6 mt-2">Figure 2:Comparison of average episodic rewards</p>
             </div>
           </div>
           <h3 class="title is-4">Results</h3>
           <div class="columns is-centered">
             <div class="column is-10">
               <img src="static/images/zhaocy/image5.png" alt="Experimental results visualization" class="image">
-              <p class="caption has-text-centered is-size-6 mt-2">Comparison between real and predicted rewards</p>
+              <p class="caption has-text-centered is-size-6 mt-2">Figure 3: Comparison between real and predicted rewards</p>
             </div>
           </div>
-          <p>The experimental results demonstrate that the DPO and MoE contribute to hallucination mitigation.</p>
+          <p>The experimental results demonstrate the effectiveness of Wireless Dreamer in improving learning efficiency and decision quality.</p>
         </div>
       </div>
     </div>
