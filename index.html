@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Hallucination</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favico.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+  </script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Hallucination-aware Optimization for Large Language Model-empowered Communications</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                Yinqiu Liu, Guangyuan Liu, Ruichen Zhang, Dusit Niyato, Zehui Xiong, Dong In Kim, Kaibin Huang, and Hongyang Du</span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">Nanyang Technological University<br> 
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/2412.06007" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- Supplementary PDF link -->
+                    <!-- <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span> -->
+
+                  <!-- Github link -->
+        
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2412.06007" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>Large Language Models (LLMs) have significantly advanced communications fields, such as Telecom Q&A, mathematical modeling, and coding. However, LLMs encounter an inherent issue known as hallucination, i.e., generating factconflicting or irrelevant content. This problem critically undermines the applicability of LLMs in communication systems yet has not been systematically explored. Hence, this paper provides a comprehensive review of LLM applications in communications, with a particular emphasis on hallucination mitigation. Specifically, we analyze hallucination causes and summarize hallucination mitigation strategies from both model- and system-based perspectives. Afterward, we review representative LLM-empowered communication schemes, detailing potential hallucination scenarios and comparing the mitigation strategies they adopted. Finally, we present a case study of a Telecom-oriented LLM that utilizes a novel hybrid approach to enhance the hallucination-aware service experience. On the model side, we publish a Telecom hallucination dataset and apply direct preference optimization to fine-tune LLMs, resulting in a 20.6% correct rate improvement. Moreover, we construct a mobile-edge mixture-of-experts architecture for optimal LLM expert activation. Our research aims to propel the field of LLM-empowered communications forward by detecting and minimizing hallucination impacts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+       <div class="item">
+        <!-- Your image here -->
+        <div align="center">
+          <img src="static/images/YQ_figure1.jpg" width: auto  height: auto  alt="The evolution of AI"/>
+        </div>
+        <h2 class="subtitle has-text-centered">
+           Practical examples of LLM hallucination. (A) is generated by Llama-7b Chat. (B) and (C) are generated by Claude 3.5 Sonnet.       
+        </h2>
+      </div>
+        
+<div class="item">
+        <!-- Your image here -->
+        <img src="static/images/YQ_figure2.jpg"   width: auto  height: auto alt="Summary of potential issues of IAI"/>
+        <h2 class="subtitle has-text-centered">
+          The illustration of LLM lifecycles and the causes of hallucinations. Also, the advantages & disadvantages of representative model- and system-based hallucination mitigation strategies are analyzed.
+        </h2>
+      </div>
+
+<div class="item">
+        <!-- Your image here -->
+        <img src="static/images/YQ_figure3.jpg"   width: auto  height: auto  alt="The framework of IAI"/>
+        <h2 class="subtitle has-text-justified">
+          The data structure of TeleQnA and hallucination detection datasets and the illustration of the DPO training process. Specifically, DPO assigns chosen answers higher rewards than rejected ones. Then, the LoRA-enhanced LLM is trained by maximizing the gap of accumulated reward between itself and the original reference LLM.
+        </h2>
+      </div>
+
+
+
+<div class="item">
+        <!-- Your image here -->
+        <img src="static/images/YQ_figure4.jpg"   width: auto  height: auto  alt="The framework of IAI"/>
+        <h2 class="subtitle has-text-justified">
+          The diffusion DRL-based gating network (left) and the MoE architecture for maximizing hallucination-aware QoE (right). The expert performance in
+the table is acquired on a workstation with an NVIDIA A6000 GPU. N1 in the left part refers to the number of queries in the user prompt.
+        </h2>
+      </div>
+
+
+        
+</section>
+<!-- End image carousel -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Tutorial: Telecom-oriented LLM with Hybrid Hallucination Mitigation</h2>
+        <div class="content has-text-justified">
+          <h3 class="title is-4">TeleQnA-hallucination Dataset</h3>
+          <p>We establish a new hallucination dataset for Telecom based on TelecomQnA. The dataset is opensource (<a href="#" class="is-link">https://lancelot1998.github.io/Hallu/</a>). It contains 10000 items, with 8000 training samples and 2000 testing samples. Each item is formatted as:</p>
+          
+          <div class="columns is-centered">
+            <div class="column is-14">
+              <img src="static/images/YQ_add1.jpg" alt="Dataset format visualization" class="image">
+              <p class="caption has-text-centered is-size-6 mt-2">Figure 1: TeleQnA Dataset Format Structure</p>
+            </div>
+          </div>
+
+          <h3 class="title is-4">DPO for Hallucination Mitigation</h3>
+          <p>We introduce a specialized Telecom hallucination dataset and demonstrate significant improvements through direct preference optimization (DPO), achieving a 20.6% increase in correct response rates. </p>
+
+          <div class="columns is-centered">
+            <div class="column is-14">
+              <img src="static/images/YQ_add3.jpg" alt="DPO" class="image">
+              <p class="caption has-text-centered is-size-6 mt-2">Figure 2: The DPO architecture</p>
+            </div>
+          </div>
+          
+          <h3 class="title is-4">Mixture-of-Experts (MoE) for Hallucination Mitigation</h3>
+          <p>Apart from DPO, we use MoE for hallucination mitigation, especially considering other networking factors such as resource costs, service latency, etc.</p>
+          
+          <h3 class="title is-4">Results</h3>
+          <div class="columns is-centered">
+            <div class="column is-10">
+              <img src="static/images/YQ_add2.jpg" alt="Experimental results visualization" class="image">
+              <p class="caption has-text-centered is-size-6 mt-2">Figure 3: Experimental Results of DPO and MoE Performance</p>
+            </div>
+          </div>
+          <p>The experimental results demonstrate that the DPO and MoE contribute to hallucination mitigation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      
+      <pre><code>@article{liu2024hallucination,
+  title={Hallucination-aware Optimization for Large Language Model-empowered Communications},
+  author={Liu, Yinqiu and Liu Guangyuan and Zhang, Ruichen and Niyato, Dusit and Xiong, Zehui and Kim, Dong In and Huang, Kaibin and Du, Hongyang},
+  journal={arXiv preprint arXiv:2412.06007},
+  year={2024}
+}
+      </code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
