@@ -197,8 +197,7 @@ Dong In Kim</span>
           </div>
           
           <h3 class="title is-4">Weather-aware UAV trajectory planning</h3>
-          <p>Apart from DPO, we use MoE for hallucination mitigation, especially considering other networking factors such as resource costs, service latency, etc.</p>
-          <h3 class="title is-4">Weather-aware Environment Setup</h3>
+          <p>We consider a UAV-assisted wireless communication scenario in LAWNs, where a single UAV acts as a mobile base station to provide downlink coverage for multiple ground users under dynamic and spatially varying weather conditions, as shown in Figure 1. The UAV traverses a two-dimensional area over a fixed time horizon and dynamically adjusts its position to optimize communication performance while responding to evolving environmental factors such as wind intensity.<h3 class="title is-4">Weather-aware Environment Setup</h3>
 <p>The <code>WeatherAwareUAVEnv</code> is a Gym-compatible simulator for UAV-based wireless optimization in dynamic environments. It supports OFDMA channel modeling, energy constraints, and weather dynamics.</p>
 
 <h4 class="title is-5">Key Parameters</h4>
@@ -240,14 +239,6 @@ Dong In Kim</span>
   <li>\( \beta \): sensitivity to weather (e.g., 10)</li>
 </ul>
 
-<h4 class="title is-5">Rendered Output</h4>
-<p>At each step, the environment renders:</p>
-<ul>
-  <li>Real-time weather map with UAV and users</li>
-  <li>Estimated data rate heatmap</li>
-  <li>Per-user throughput bar chart (green = covered, red = uncovered)</li>
-  <li>Historical reward and throughput curves</li>
-</ul>
 
           <h3 class="title is-4">Results</h3>
           <div class="columns is-centered">
