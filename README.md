@@ -1,4 +1,4 @@
-# Hallucination-aware Optimization for Large Language Model-empowered Communications
+# World Models for Cognitive Agents: Transforming Edge Intelligence in Future Networks
 
 ## Links:
 
