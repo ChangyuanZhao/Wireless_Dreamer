@@ -198,7 +198,57 @@ Dong In Kim</span>
           
           <h3 class="title is-4">Weather-aware UAV trajectory planning</h3>
           <p>Apart from DPO, we use MoE for hallucination mitigation, especially considering other networking factors such as resource costs, service latency, etc.</p>
-          
+          <h3 class="title is-4">Weather-aware Environment Setup</h3>
+<p>The <code>WeatherAwareUAVEnv</code> is a Gym-compatible simulator for UAV-based wireless optimization in dynamic environments. It supports OFDMA channel modeling, energy constraints, and weather dynamics.</p>
+
+<h4 class="title is-5">Key Parameters</h4>
+<ul>
+  <li><strong>Grid Size:</strong> 64×64 (each cell is 4×4 meters)</li>
+  <li><strong>Users:</strong> 10 randomly placed ground users</li>
+  <li><strong>UAV Altitude:</strong> Fixed at 100 meters</li>
+  <li><strong>Bandwidth:</strong> 100 MHz at 28 GHz mmWave</li>
+  <li><strong>Action Space:</strong> 9 discrete movement directions (including no-op)</li>
+  <li><strong>Reward:</strong> Average per-user throughput in Mbps (optionally penalized by movement cost)</li>
+</ul>
+
+<h4 class="title is-5">Weather Modeling</h4>
+<p>We adopt a drifting Gaussian hotspot to simulate dynamic weather disturbances. At each step, the storm center moves with drift and noise, generating a rainfall map:</p>
+
+<div class="content">
+  <p>
+    $$W(x, y) = \alpha \cdot \exp\left(-\frac{(x - x_0)^2 + (y - y_0)^2}{2\sigma^2}\right)$$
+  </p>
+</div>
+
+<ul>
+  <li>\( \alpha \): intensity (default 0.7)</li>
+  <li>\( (x_0, y_0) \): storm center (drifts over time)</li>
+  <li>\( \sigma \): Gaussian width proportional to grid size</li>
+</ul>
+
+<h4 class="title is-5">Path Loss under Weather</h4>
+<p>Weather intensity affects path loss as follows:</p>
+<div class="content">
+  <p>
+    $$PL(d) = PL_0 + 10 \cdot n \cdot \log_{10}(d) + \beta \cdot W(x, y)$$
+  </p>
+</div>
+
+<ul>
+  <li>\( PL_0 \): base loss (e.g., 60 dB)</li>
+  <li>\( n \): exponent (e.g., 2.5)</li>
+  <li>\( \beta \): sensitivity to weather (e.g., 10)</li>
+</ul>
+
+<h4 class="title is-5">Rendered Output</h4>
+<p>At each step, the environment renders:</p>
+<ul>
+  <li>Real-time weather map with UAV and users</li>
+  <li>Estimated data rate heatmap</li>
+  <li>Per-user throughput bar chart (green = covered, red = uncovered)</li>
+  <li>Historical reward and throughput curves</li>
+</ul>
+
           <h3 class="title is-4">Results</h3>
           <div class="columns is-centered">
             <div class="column is-10">
