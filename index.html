@@ -191,7 +191,7 @@
 
         <div class="columns is-centered">
             <div class="column is-14">
-              <img src="static/images/zhaocy/image3.png" alt="Dataset format visualization" class="image">
+              <img src="static/images/zhaocy/fig4.png" alt="Dataset format visualization" class="image">
               <p class="caption has-text-centered is-size-6 mt-2">Figure 1: The workflow of the proposed framework. The left part is the model structure of Wireless Dreamer, including a world model, Q-network, and target Q-network. The bottom part presents the continuous processes of Wireless Dreamer. The right part illustrates the weather-aware tracking planning in a UAV-assisted scenario in LAWNs.</p>
             </div>
           </div>
@@ -239,20 +239,120 @@
   <li>\( \beta \): sensitivity to weather (e.g., 10)</li>
 </ul>
 
+
+          <h4 class="title is-5">Environment Parameters</h4>
+<div class="content">
+  <ul>
+    <li>\( \text{grid\_size} \): 64 (Grid dimensions: 64 × 64)</li>
+    <li>\( N_{\text{users}} \): 10 (Number of ground users)</li>
+    <li>\( T_{\max} \): 100 steps (Maximum steps per episode)</li>
+    <li>\( h_{\text{UAV}} \): 100 m (UAV altitude)</li>
+    <li>\( \Delta_{\text{cell}} \): 4 m (Grid cell size)</li>
+    <li>\( K_{\text{OFDMA}} \): 64 (OFDMA subcarriers)</li>
+    <li>\( R_{\text{threshold}} \): 10 Mbps (Coverage threshold)</li>
+  </ul>
+</div>
+
+<h4 class="title is-5">Weather Model</h4>
+<div class="content">
+  <p>Weather intensity map follows a Gaussian distribution with drift:</p>
+  <p>
+    $$W(x, y, t) = I_W \cdot \exp\left(-\frac{(x - c_x(t))^2 + (y - c_y(t))^2}{2\sigma^2}\right)$$
+  </p>
+</div>
+
+<ul>
+  <li>\( I_W \): Weather intensity = 0.7</li>
+  <li>\( (c_x(t), c_y(t)) \): Weather center position at time \( t \)</li>
+  <li>\( \sigma \): Weather spread = grid_size / 5.0 ≈ 12.8</li>
+  <li>\( v_{\text{drift}} \): Drift speed = (0.3, 0.2) grid cells/step</li>
+  <li>\( \sigma_{\text{noise}} \): Gaussian noise = 0.2</li>
+</ul>
+
+<h4 class="title is-5">DQN Network Parameters</h4>
+<div class="content">
+  <p><strong>Q-value update (TD learning):</strong></p>
+  <p>
+    $$\mathcal{L}_Q = \mathbb{E}_{(s,a,r,s')\sim\mathcal{D}}\left[\left(r + \gamma \max_{a'}Q_{\text{target}}(s',a') - Q(s,a)\right)^2\right]$$
+  </p>
+  
+  <p><strong>Epsilon decay:</strong></p>
+  <p>
+    $$\epsilon_{t+1} = \max(\epsilon_{\min}, \lambda_{\epsilon} \cdot \epsilon_t)$$
+  </p>
+</div>
+
+<ul>
+  <li>\( \alpha_Q \): 1e-3 (Q-network learning rate)</li>
+  <li>\( \gamma \): 0.99 (Discount factor)</li>
+  <li>\( \epsilon_{\text{start}} \): 1.0 (Initial epsilon for exploration)</li>
+  <li>\( \epsilon_{\text{min}} \): 0.1 (Minimum epsilon)</li>
+  <li>\( \lambda_{\epsilon} \): 0.995 (Epsilon decay rate)</li>
+  <li>\( f_{\text{target}} \): 10 episodes (Target network update frequency)</li>
+  <li>\( d_{\text{hidden}} \): 128 (Hidden layer dimension)</li>
+</ul>
+
+<h4 class="title is-5">World Model (Transition Model) Parameters</h4>
+<div class="content">
+  <p><strong>State encoding:</strong></p>
+  <p>$$h_s = \text{MLP}_{\text{encoder}}(s) \in \mathbb{R}^{16}$$</p>
+  
+  <p><strong>Combined features:</strong></p>
+  <p>$$z = [h_s; \text{one-hot}(a)] \in \mathbb{R}^{25}$$</p>
+  <p style="font-size: 0.9em;">(16-dim encoded state + 9-dim one-hot action)</p>
+  
+  <p><strong>Next state and reward prediction:</strong></p>
+  <p>$$\hat{s}' = \text{MLP}_{\text{state}}(z)$$</p>
+  <p>$$\hat{r} = \text{MLP}_{\text{reward}}(z)$$</p>
+  
+  <p><strong>World model loss:</strong></p>
+  <p>$$\mathcal{L}_M = \mathbb{E}_{(s,a,r,s')\sim\mathcal{D}}\left[\|s' - \hat{s}'\|^2 + |r - \hat{r}|^2\right]$$</p>
+</div>
+
+<ul>
+  <li>\( \alpha_M \): 1e-3 (World model learning rate)</li>
+  <li>\( d_{\text{encoder}} \): 16 (State encoder output dimension)</li>
+  <li>\( d_{\text{hidden}} \): 128 (Hidden layer dimension)</li>
+  <li>\( f_{\text{model}} \): 4 episodes (Model update frequency)</li>
+  <li>\( \rho_{\text{model}} \): 0.7 (Model-generated data ratio)</li>
+  <li>\( K_{\text{rollout}} \): 5 steps (Rollout steps for synthetic data)</li>
+</ul>
+
+<h4 class="title is-5">Model-Based Planning Parameters</h4>
+<div class="content">
+  <p><strong>Planning objective (when enabled):</strong></p>
+  <p>
+    $$a^* = \arg\max_{a_0} \sum_{i=1}^{N_{\text{samples}}} \sum_{t=0}^{H_{\text{plan}}} \gamma^t \hat{r}_t(s_t, a_t^{(i)})$$
+  </p>
+</div>
+
+<ul>
+  <li>\( H_{\text{plan}} \): 5 steps (Planning horizon)</li>
+  <li>\( N_{\text{samples}} \): 10 (Number of action sequences sampled)</li>
+  <li>\( \text{use\_planning} \): True (Planning disabled by default)</li>
+</ul>
+
+<h4 class="title is-5">Experience Replay Parameters</h4>
+<div class="content">
+  <ul>
+    <li>\( C_{\text{buffer}} \): 16,000 (Replay buffer capacity)</li>
+    <li>\( B \): 64 (Batch size for training)</li>
+  </ul>
+</div>
           <h3 class="title is-4">Experimental Setup</h3>
           <p>Our experiment is based on Python along with the PyTorch package, conducted on a Linux server equipped with an Ubuntu 22.04 operating system and powered by an Intel(R) Xeon(R) Silver 4410Y 12-core processor and an NVIDIA RTX A6000 GPU. We benchmark the proposed method with DQN and random policy.
 
           <h3 class="title is-4">Results</h3>
           <div class="columns is-centered">
             <div class="column is-10">
-              <img src="static/images/zhaocy/image4.png" alt="Experimental results visualization" class="image">
+              <img src="static/images/zhaocy/fig2.png" alt="Experimental results visualization" class="image">
               <p class="caption has-text-centered is-size-6 mt-2">Figure 2: Comparison of average episodic rewards</p>
             </div>
           </div>
           <h3 class="title is-4">Results</h3>
           <div class="columns is-centered">
             <div class="column is-10">
-              <img src="static/images/zhaocy/image5.jpg" alt="Experimental results visualization" class="image">
+              <img src="static/images/zhaocy/fig3.png" alt="Experimental results visualization" class="image">
               <p class="caption has-text-centered is-size-6 mt-2">Figure 3: Comparison between real and predicted rewards</p>
             </div>
           </div>
@@ -307,4 +407,5 @@
 
   </body>
   </html>
+
 
